@@ -17,18 +17,8 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os
-from flask import render_template
-from werkzeug.utils import send_from_directory
-from vaksina import vaksina
 
+from flask import Flask
 
-@vaksina.route('/')
-def root():
-    return render_template('index.html')
-
-
-@vaksina.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(vaksina.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+vaksina_api = Flask(__name__)
+from vaksina_api import views
